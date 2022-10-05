@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 import reactor.core.publisher.Flux
 import reactor.test.StepVerifier
 
-class FiterTest {
+class FilterTest {
     private val cityList = listOf("Ipatinga", "BH", "Uberlandia", "Sao Paulo", "Passa dez")
 
     @Test

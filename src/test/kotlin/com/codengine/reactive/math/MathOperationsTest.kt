@@ -22,4 +22,9 @@ class MathOperationsTest {
         assertThat(result).contains("nao possui")
     }
 
+    @Test
+    fun findPrimeNumbersTest() {
+        mathOperations.findPrimeNumbersFilter(50)
+    }
+
 }

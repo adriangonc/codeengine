@@ -2,6 +2,7 @@ package com.codengine.reactive.service
 
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
+import java.util.stream.Stream
 
 @Service
 class MathOperations {
@@ -15,16 +16,16 @@ class MathOperations {
         return "O numero $n nao possui uma raiz quadrada exata!"
     }
 
-    fun findPrimeNumbers(n: Int) {
+    fun findPrimeNumbers(n: Int): Flux<MutableList<Int>> {
         val primesList = mutableListOf<Int>()
         for (num in 2..n) {
-            if ((2 until num).none{ num % it == 0 })
+            if ((2 until num).none { num % it == 0 })
                 primesList.add(num)
         }
-        Flux.just(primesList).log().subscribe {primes -> println(primes)}
+        return Flux.just(primesList).log()
     }
 
-    fun findPrimeNumbersFilter(n: Int) {
+    fun findPrimeNumbersFilter(n: Int): Flux<Stream<Int>> {
         var primesList = if(globalPrimeNumberList.last() > n) {
             globalPrimeNumberList.filter {primes -> primes < n}
         } else {
@@ -33,7 +34,7 @@ class MathOperations {
         if(globalPrimeNumberList.size > primesList.size) {
             globalPrimeNumberList = primesList
         }
-        println(primesList)
+        return Flux.just(primesList.stream()).log()
         
     }
 

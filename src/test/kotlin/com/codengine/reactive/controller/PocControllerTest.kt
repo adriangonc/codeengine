@@ -32,4 +32,13 @@ internal class PocControllerTest : ControllerTest() {
             """.trimIndent()) } }
     }
 
+    @Test
+    fun `flux of numbers with timeout`(){
+
+        mockMvc.get("/flux/numbers")
+            .andDo { print() }
+            .andExpect { status { is2xxSuccessful() } }
+        //TODO
+    }
+
 }

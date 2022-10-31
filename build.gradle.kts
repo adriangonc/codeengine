@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-	//implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	// Required for MockMvc autoconfigure
 	testImplementation("org.springframework.boot:spring-boot-starter-web")
@@ -28,7 +28,7 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	implementation("junit:junit:4.13.1")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	//testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
 	testImplementation("io.projectreactor:reactor-test")
 
 	//Junit

@@ -1,7 +1,7 @@
 package com.codengine.reactive.controller
 
 import com.codengine.reactive.model.Employee
-import com.codengine.reactive.repository.EmployessRepository
+import com.codengine.reactive.repository.EmployeesRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -12,7 +12,7 @@ import reactor.core.publisher.Flux
 @RequestMapping("v1/employees")
 class EmployeeController(
     @Autowired
-    val employeeRepository: EmployessRepository
+    val employeeRepository: EmployeesRepository
 ) {
 
     @GetMapping

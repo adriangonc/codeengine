@@ -18,7 +18,17 @@ class DbInserts(
     val reactiveMongoOperations: ReactiveMongoOperations
 ) : CommandLineRunner {
     override fun run(vararg args: String?) {
-        dbSetup()
+        if(isDbEmpty()) {
+            dbSetup()
+        } else {
+            println("Database not empty!")
+        }
+    }
+
+    private fun isDbEmpty(): Boolean {
+        var employeeCont = employeeRepository.count()
+        println("The data base has ${employeeCont.block()} employees!")
+        return employeeCont.block()!! < 1L
     }
 
     private fun dbSetup() {

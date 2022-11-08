@@ -2,6 +2,7 @@ package com.codengine.reactive.controller
 
 import com.codengine.reactive.model.Employee
 import com.codengine.reactive.repository.EmployeesRepository
+import com.codengine.reactive.service.EmployeeService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
@@ -11,7 +12,8 @@ import reactor.core.publisher.Mono
 @RequestMapping("v1/employees")
 class EmployeeController(
     @Autowired
-    val employeeRepository: EmployeesRepository
+    val employeeRepository: EmployeesRepository,
+    private val employeeService: EmployeeService
 ) {
 
     @GetMapping
@@ -39,5 +41,14 @@ class EmployeeController(
         return employeeRepository.deleteById(id)
     }
 
+    @GetMapping("/report/department/{department}")
+    fun getReportEmployees(@PathVariable department: String): Flux<Employee> {
+        return employeeRepository.findByDepartment(department)
+    }
+
+    @GetMapping("/report/department/names/{department}")
+    fun getNameEmployees(@PathVariable department: String): Flux<Employee> {
+        return employeeService.getEmployeeNames(department)
+    }
 
 }

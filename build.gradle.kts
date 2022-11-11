@@ -18,6 +18,7 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
+	implementation("org.projectlombok:lombok:1.18.20")
 	// Required for MockMvc autoconfigure
 	testImplementation("org.springframework.boot:spring-boot-starter-web")
 
@@ -37,6 +38,17 @@ dependencies {
 	testRuntimeOnly(group = "org.junit.jupiter", name = "junit-jupiter-engine")
 	//mock
 	testImplementation(group = "io.mockk", name = "mockk", version = "1.10.2")
+	//Cache redis
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis-reactive
+	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive:2.7.5")
+	// https://mvnrepository.com/artifact/redis.clients/jedis
+	//implementation("redis.clients:jedis:4.3.1")
+	// https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+	implementation("org.slf4j:slf4j-api:1.7.25")
+
+
+
+
 }
 
 tasks.withType<KotlinCompile> {

@@ -4,12 +4,15 @@ import com.codengine.reactive.model.Employee
 import com.codengine.reactive.repository.EmployeesRepository
 import com.codengine.reactive.service.EmployeeService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.Cacheable
+import org.springframework.cache.annotation.EnableCaching
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("v1/employees")
+//@EnableCaching
 class EmployeeController(
     @Autowired
     val employeeRepository: EmployeesRepository,
@@ -17,6 +20,7 @@ class EmployeeController(
 ) {
 
     @GetMapping
+    //@Cacheable(key = "#id", value = ["employee"])
     fun getAllEmployees(): Flux<Employee> {
         return employeeRepository.findAll()
     }
@@ -28,7 +32,7 @@ class EmployeeController(
 
     @PostMapping
     fun insertEmployee(@RequestBody employee: Employee): Mono<Employee> {
-        return employeeRepository.save(employee)
+        return employeeService.save(employee)
     }
 
     @PutMapping("/update")

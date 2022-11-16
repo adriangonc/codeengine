@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
+
 @Slf4j
 @Service
 class RedisCacheService(
@@ -39,5 +40,7 @@ class RedisCacheService(
             .existsForKey(key)
             .doOnNext { println("Cache existe para a chave $key") }
     }
+
+
 
 }

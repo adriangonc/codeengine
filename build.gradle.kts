@@ -45,6 +45,10 @@ dependencies {
 	//implementation("redis.clients:jedis:4.3.1")
 	// https://mvnrepository.com/artifact/org.slf4j/slf4j-api
 	implementation("org.slf4j:slf4j-api:1.7.25")
+	// https://mvnrepository.com/artifact/com.google.code.gson/gson
+	implementation("com.google.code.gson:gson:2.10")
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+	implementation("org.apache.commons:commons-lang3:3.8.1")
 
 
 

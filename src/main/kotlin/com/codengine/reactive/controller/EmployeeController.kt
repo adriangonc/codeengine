@@ -27,7 +27,7 @@ class EmployeeController(
 
     @GetMapping("{id}")
     fun getEmployeeById(@PathVariable id: String): Mono<Employee> {
-        return employeeRepository.findById(id)
+        return employeeService.getEmployee(id)
     }
 
     @PostMapping

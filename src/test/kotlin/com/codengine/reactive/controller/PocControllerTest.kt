@@ -1,44 +1,36 @@
 package com.codengine.reactive.controller
 
-import com.codengine.reactive.ControllerTest
-import org.junit.Ignore
+import com.codengine.reactive.service.MathOperationsService
 import org.junit.jupiter.api.Test
+import org.junit.runner.RunWith
+import org.mockito.BDDMockito
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.get
-import org.springframework.test.web.servlet.post
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
+import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.test.web.reactive.server.WebTestClient
+import reactor.core.publisher.Flux
 
-internal class PocControllerTest : ControllerTest() {
+@RunWith(SpringRunner::class)
+@WebFluxTest(controllers = arrayOf(PocController::class))
+class PocControllerTest(
+    @Autowired
+    val webTestClient: WebTestClient
+) {
 
-//    @Autowired
-//    private lateinit var mockMvc: MockMvc
-//
-//    @Autowired
-//    private lateinit var pocController : PocController
-//
-//    @Test
-//    fun `flux API test`(){
-//        mockMvc.get("/flux/numbers")
-//            .andDo { print() }
-//            .andExpect { status { is2xxSuccessful() } }
-//    }
-//
-//    @Test
-//    fun `flux prime numbers test`(){
-//        mockMvc.get("/flux/numbers/primes/100")
-//            .andDo { print() }
-//            .andExpect { content { json("""
-//                [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]
-//            """.trimIndent()) } }
-//    }
-//
-//    @Test
-//    fun `flux of numbers with timeout`(){
-//
-//        mockMvc.get("/flux/numbers")
-//            .andDo { print() }
-//            .andExpect { status { is2xxSuccessful() } }
-//        //TODO
-//    }
+    @MockBean
+    private lateinit var mathOperations: MathOperationsService
+
+    @Test
+    fun `flux API test`() {
+        BDDMockito.given(mathOperations.getNumbers())
+            .willReturn(Flux.just(2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97))
+
+        webTestClient.get()
+            .uri("/flux/numbers/stream")
+            .exchange()
+            .expectStatus()
+            .is2xxSuccessful
+    }
 
 }

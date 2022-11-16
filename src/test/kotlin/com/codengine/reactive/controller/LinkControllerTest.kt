@@ -23,8 +23,8 @@ class LinkControllerTest(
     @MockBean
     private lateinit var linkService: LinkService
 
-    val link = "https://google.com.br"
-    val shortenedLink = "https://shorlk"
+    private val link = "https://google.com.br"
+    private val shortenedLink = "https://shorlk"
 
     @Test
     fun shorterLink(){
@@ -40,7 +40,6 @@ class LinkControllerTest(
             .is2xxSuccessful()
             .expectBody()
             .jsonPath("$.shortenedLink").isEqualTo(shortenedLink)
-
     }
 
 }

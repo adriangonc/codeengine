@@ -1,12 +1,12 @@
 package com.codengine.reactive.math
 
-import com.codengine.reactive.service.MathOperations
+import com.codengine.reactive.service.MathOperationsService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class MathOperationsTest {
 
-    private val mathOperations = MathOperations()
+    private val mathOperations = MathOperationsService()
 
     @Test
     fun squareRootTest(){

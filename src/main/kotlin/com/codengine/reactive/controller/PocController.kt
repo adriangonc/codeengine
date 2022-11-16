@@ -1,17 +1,16 @@
 package com.codengine.reactive.controller
 
-import com.codengine.reactive.service.MathOperations
+import com.codengine.reactive.service.MathOperationsService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 import java.time.Duration
 import java.util.stream.Stream
 
 @RestController
-class PocController(private val mathOperation : MathOperations) {
+class PocController(private val mathOperation : MathOperationsService) {
 
     //Blocking
     @GetMapping("/flux/numbers")

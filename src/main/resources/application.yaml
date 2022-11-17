@@ -15,3 +15,6 @@ app-config:
     ttl: 600
     scheduler: 0 * * * * *
     redis-enabled: true
+
+app:
+  baseUrl: "http://localhost:8080"

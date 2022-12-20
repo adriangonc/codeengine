@@ -8,6 +8,14 @@ spring:
       port: 27017
       database: localmongo
 
+  application:
+    name: reactive-poc
+  rabbitmq:
+    port: 5672
+    username: admin
+    password: admin
+    host: localhost
+
 app-config:
   cache:
     host: 0.0.0.0
@@ -18,8 +26,4 @@ app-config:
 
 app:
   baseUrl: "http://localhost:8080"
-  rabbitmq:
-    port: 15672
-    username: admin
-    password: admin
-    host: localhost
+

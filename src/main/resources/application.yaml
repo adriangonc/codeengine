@@ -18,3 +18,8 @@ app-config:
 
 app:
   baseUrl: "http://localhost:8080"
+  rabbitmq:
+    port: 15672
+    username: admin
+    password: admin
+    host: localhost

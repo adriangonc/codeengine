@@ -50,7 +50,12 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
 	implementation("org.apache.commons:commons-lang3:3.8.1")
 
-
+	//RabbitMQ
+	implementation("org.springframework.boot:spring-boot-starter-amqp")
+	
+	//Sleuth - atribui id para logs / mensagens
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-sleuth
+	implementation("org.springframework.cloud:spring-cloud-starter-sleuth:3.1.4")
 
 
 }

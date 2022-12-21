@@ -12,6 +12,6 @@ class FirstQueueConsumer {
     @RabbitListener(queues = ["FIRST-QUEUE-BASIC"])
     fun bodyAsStringFromFirstQueue(message: Message) {
         val bodyAsString = message.body?.let { String(it) } ?: ""
-        log.info("body $bodyAsString")
+        log.info("Message read with success body: $bodyAsString")
     }
 }

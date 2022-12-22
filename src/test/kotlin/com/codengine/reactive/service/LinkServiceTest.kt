@@ -21,7 +21,7 @@ class LinkServiceTest {
 
     private val linkRepository: LinkRepository = mock(LinkRepository::class.java)
     private val linkDto = Link(link, shortenedLink)
-    private val linkService = LinkService(linkRepository, baseUrl)
+    //private val linkService = LinkService(linkRepository, baseUrl)
 
 
     /*@Before
@@ -30,7 +30,7 @@ class LinkServiceTest {
     }*/
 
     //@Test //Comentado devido a NPE
-    fun shortensLinkTest() {
+    /*fun shortensLinkTest() {
         BDDMockito.given(linkRepository.save(linkDto)).willReturn(Mono.just(Link(link, shortenedLink)))
 
         StepVerifier
@@ -39,6 +39,6 @@ class LinkServiceTest {
             .expectComplete()
             .verify()
 
-    }
+    }*/
 
 }

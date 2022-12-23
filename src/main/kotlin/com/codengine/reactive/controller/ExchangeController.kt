@@ -24,8 +24,8 @@ class ExchangeController(
 
     @PostMapping("person/{exchange}/{routingKey}")
     fun postPersonOnExchange(@PathVariable exchange: String, @PathVariable routingKey: String, @RequestBody person: Person): HttpEntity<Any?> {
-        log.info("Sending message $person ")
         rabbitTemplate.convertAndSend(exchange, routingKey, person)
+        log.info("Sending message to exchange: $exchange, routingKey: $routingKey, message: $person ")
         return ResponseEntity.ok().build()
     }
 }

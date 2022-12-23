@@ -15,9 +15,9 @@ class PersonConsumer (
     private val log = LoggerFactory.getLogger(javaClass)
 
     @RabbitListener(queues = ["EMPLOYEE-QUEUE"])
-    fun receiveMessageFromJsonQueue(message: Message) {
-        log.info("receive message from ${message.messageProperties.consumerQueue}")
+    fun receiveMessageFromJsonQueue(person: Person) {
+        //log.info("receive message from ${message.messageProperties.consumerQueue}")
         //val person = messageConverter.fromMessage(message) as Person
-        log.info("body $message")
+        log.info("body $person")
     }
 }

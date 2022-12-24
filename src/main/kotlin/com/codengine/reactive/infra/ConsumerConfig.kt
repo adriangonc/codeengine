@@ -16,7 +16,7 @@ class ConsumerConfig(
 ) {
 
     @Bean
-    fun listenerContainer(): MessageListenerContainer { //Implementação com basicListener
+    fun listenerContainer(): MessageListenerContainer { //Implementaï¿½ï¿½o com basicListener
         val container = SimpleMessageListenerContainer()
         container.connectionFactory = connectionFactory
         container.setQueueNames("SECOND-QUEUE-BASIC")
@@ -24,7 +24,8 @@ class ConsumerConfig(
         simpleRabbitListenerConnectionFactory.adviceChain?.let {
             container.setAdviceChain(*it)
         }
-        //container.start() //Se for usado fora de um Bean será necessário startar o container
+        //container.start() //Se for usado fora de um Bean serï¿½ necessï¿½rio startar o container
         return container
     }
+
 }

@@ -19,4 +19,6 @@ class PersonConsumer (
         //val person = messageConverter.fromMessage(message) as Person
         log.info("body $person")
     }
+
+    //TODO implementar DLQ
 }

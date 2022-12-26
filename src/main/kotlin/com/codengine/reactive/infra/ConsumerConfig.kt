@@ -1,6 +1,7 @@
 package com.codengine.reactive.infra
 
 import com.codengine.reactive.service.BasicListener
+import com.codengine.reactive.service.PersonListener
 import org.aopalliance.aop.Advice
 import org.springframework.amqp.rabbit.config.RetryInterceptorBuilder
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory
@@ -13,20 +14,21 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class ConsumerConfig(
     private val connectionFactory: ConnectionFactory,
-    private val basicListener: BasicListener,
+    //private val basicListener: BasicListener,
+    private val personListener: PersonListener,
     private val simpleRabbitListenerConnectionFactory: SimpleRabbitListenerContainerFactory
 ) {
 
     @Bean
-    fun listenerContainer(): MessageListenerContainer { //Implementa��o com basicListener
+    fun listenerContainer(): MessageListenerContainer { //Implementacao com basicListener
         val container = SimpleMessageListenerContainer()
         container.connectionFactory = connectionFactory
         container.setQueueNames("SECOND-QUEUE-BASIC")
-        container.setMessageListener(basicListener)
+        container.setMessageListener(personListener)
         simpleRabbitListenerConnectionFactory.adviceChain?.let {
             container.setAdviceChain(*it, retryPolicy())
         }
-        //container.start() //Se for usado fora de um Bean ser� necess�rio startar o container
+        //container.start() //Se for usado fora de um Bean sera necessario startar o container
         return container
     }
 
@@ -37,7 +39,7 @@ class ConsumerConfig(
             .backOffOptions(
                 1000, //Initial interval
                 2.0, // Multiplier
-                6000 // Max interval
+                10000 // Max interval
             )
             .build()
     }

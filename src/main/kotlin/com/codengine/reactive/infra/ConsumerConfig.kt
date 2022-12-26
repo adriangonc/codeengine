@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFacto
 import org.springframework.amqp.rabbit.connection.ConnectionFactory
 import org.springframework.amqp.rabbit.listener.MessageListenerContainer
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer
+import org.springframework.amqp.rabbit.retry.RejectAndDontRequeueRecoverer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -23,7 +24,7 @@ class ConsumerConfig(
     fun listenerContainer(): MessageListenerContainer { //Implementacao com basicListener
         val container = SimpleMessageListenerContainer()
         container.connectionFactory = connectionFactory
-        container.setQueueNames("SECOND-QUEUE-BASIC")
+        container.setQueueNames("SECOND-QUEUE-ADVANCED")
         container.setMessageListener(personListener)
         simpleRabbitListenerConnectionFactory.adviceChain?.let {
             container.setAdviceChain(*it, retryPolicy())
@@ -41,6 +42,7 @@ class ConsumerConfig(
                 2.0, // Multiplier
                 10000 // Max interval
             )
+            .recoverer(RejectAndDontRequeueRecoverer()) // Após as tetativas move mensagens com erro para a DLQ
             .build()
     }
 

@@ -16,8 +16,10 @@ class PersonService(
 
     fun savePerson(person: Person) : Mono<Person>? {
         try {
-            log.info("Saving person to database")
-            return personRepository.save(person)
+            log.info("Saving person to database...")
+            var savedPerson = personRepository.save(person)
+            print("Saved person: $savedPerson")
+            return savedPerson
         } catch (e : Exception) {
             println(e.message)
         }

@@ -28,7 +28,6 @@ class LinkControllerTest(
 
     @Test
     fun shorterLink(){
-        //Mockito.`when`(linkService.shortenedLink("https://google.com.br")).thenReturn(Mono.just("http://localhost:8080/1532"))
         BDDMockito.given(linkService.shortenedLink(link)).willReturn(Mono.just(shortenedLink))
 
         webTestClient.post()

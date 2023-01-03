@@ -21,7 +21,7 @@ class LinkService(
         /*return linkRepository.save(Link(link, randomKey))
             .map { result -> baseUrl + result.key }*/
         //return Mono.just(baseUrl + randomKey)
-        return Mono.just("Teste")
+        return Mono.just(randomKey)
     }
 
 }

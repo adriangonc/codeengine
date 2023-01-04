@@ -10,7 +10,8 @@ import reactor.core.publisher.Mono
 
 @Service
 class LinkService(
-    //val linkRepository : LinkRepository,
+    @Autowired
+    val linkRepository : LinkRepository,
 
     @Value("\${app.baseUrl}")
     private val baseUrl : String
@@ -18,10 +19,10 @@ class LinkService(
 
     fun shortenedLink(link: String) : Mono<String> {
         val randomKey = RandomStringUtils.randomAlphabetic(7)
-        /*return linkRepository.save(Link(link, randomKey))
-            .map { result -> baseUrl + result.key }*/
+        return linkRepository.save(Link(link, randomKey))
+            .map { result -> baseUrl + result.key }
         //return Mono.just(baseUrl + randomKey)
-        return Mono.just(randomKey)
+        //return Mono.just(randomKey)
     }
 
 }

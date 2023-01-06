@@ -36,7 +36,7 @@ class LinkControllerTest(
             .syncBody("{\"link\":\"https://google.com.br\"}")
             .exchange()
             .expectStatus()
-            .is2xxSuccessful()
+            .is2xxSuccessful
             .expectBody()
             .jsonPath("$.shortenedLink").isEqualTo(shortenedLink)
     }

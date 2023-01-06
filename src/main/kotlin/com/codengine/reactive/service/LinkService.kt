@@ -21,8 +21,6 @@ class LinkService(
         val randomKey = RandomStringUtils.randomAlphabetic(7)
         return linkRepository.save(Link(link, randomKey))
             .map { result -> baseUrl + result.key }
-        //return Mono.just(baseUrl + randomKey)
-        //return Mono.just(randomKey)
     }
 
 }

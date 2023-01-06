@@ -16,6 +16,10 @@ spring:
     password: admin
     host: localhost
 
+  kafka:
+    bootstrap-servers:
+      - localhost:29092
+
 app-config:
   cache:
     host: 0.0.0.0

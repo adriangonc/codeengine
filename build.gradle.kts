@@ -57,6 +57,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-sleuth
 	implementation("org.springframework.cloud:spring-cloud-starter-sleuth:3.1.4")
 
+	//Kafka
+	// https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
+	implementation("org.springframework.kafka:spring-kafka:2.9.4")
 
 }
 

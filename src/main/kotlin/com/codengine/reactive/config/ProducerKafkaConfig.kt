@@ -1,6 +1,7 @@
 package com.codengine.reactive.config
 
 import org.apache.kafka.clients.admin.AdminClientConfig
+import org.apache.kafka.clients.admin.NewTopic
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.beans.factory.annotation.Autowired
@@ -40,6 +41,11 @@ class ProducerKafkaConfig(
         val configs = HashMap<String, Any>()
         configs[AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG] = kafkaProperties.bootstrapServers
         return KafkaAdmin(configs)
+    }
+
+    @Bean
+    fun newTopic(): NewTopic {
+        return NewTopic("topic-test-1", 10, 1)
     }
 
 }

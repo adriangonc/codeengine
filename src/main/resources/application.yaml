@@ -12,8 +12,8 @@ spring:
     name: reactive-poc
   rabbitmq:
     port: 5672
-    username: admin
-    password: admin
+    username: guest
+    password: guest
     host: localhost
 
   kafka:

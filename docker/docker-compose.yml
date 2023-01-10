@@ -32,8 +32,8 @@ services:
       # data mapping -> host: container
       # queues and messages data of the container will be stored on the host
     environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     restart: always
 
   zookeeper:

@@ -4,6 +4,7 @@ import com.codengine.reactive.model.Employee
 import com.codengine.reactive.repository.EmployeesRepository
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -12,6 +13,9 @@ import reactor.core.publisher.Mono
 class EmployeeService(
     @Autowired
     val employeeRepository: EmployeesRepository,
+
+    @Autowired
+    private val kafkaTemplate: KafkaTemplate<String, Any>,
 
     @Autowired
     val cacheService: RedisCacheService
@@ -25,6 +29,7 @@ class EmployeeService(
 
     fun save(employee: Employee): Mono<Employee> {
         cacheService.save(employee.id.toString(), employee.toString())
+        kafkaTemplate.send("employee-topic", (employee.toString()))
         return employeeRepository.save(employee)
     }
 

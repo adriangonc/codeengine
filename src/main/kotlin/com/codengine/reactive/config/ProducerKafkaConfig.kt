@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.kafka.config.TopicBuilder
 import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.core.KafkaAdmin
 import org.springframework.kafka.core.KafkaTemplate
@@ -43,9 +44,17 @@ class ProducerKafkaConfig(
         return KafkaAdmin(configs)
     }
 
-    @Bean
-    fun newTopic(): NewTopic {
-        return NewTopic("topic-test-1", 10, 1)
+//    @Bean
+//    fun newTopic(): NewTopic {
+//        return NewTopic("topic-test-1", 10, 1)
+//    }
+
+    @Bean //Funciona a partir do spring kafka 2.7
+    fun topics(): KafkaAdmin.NewTopics {
+        return KafkaAdmin.NewTopics(
+            TopicBuilder.name("topic-test-1").partitions(10).replicas(1).build(),
+            TopicBuilder.name("employee-topic").partitions(2).replicas(1).build()
+        )
     }
 
 }

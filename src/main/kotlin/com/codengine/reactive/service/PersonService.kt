@@ -26,4 +26,8 @@ class PersonService(
         return null
     }
 
+    fun deletePerson(personId: String): Mono<Void> {
+        return personRepository.deleteById(personId)
+    }
+
 }

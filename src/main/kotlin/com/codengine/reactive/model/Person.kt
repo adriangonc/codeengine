@@ -4,7 +4,9 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
 @Document("person")
 data class Person(
-    val name: String,
+    var id: String,
+
+    var name: String,
 
     val collageCompletedYear: Int?,
 

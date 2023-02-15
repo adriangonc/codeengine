@@ -2,6 +2,7 @@ package com.codengine.reactive.model
 
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
+
 @Document("person")
 data class Person(
     var id: String,

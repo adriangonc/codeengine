@@ -44,11 +44,6 @@ class ProducerKafkaConfig(
         return KafkaAdmin(configs)
     }
 
-//    @Bean
-//    fun newTopic(): NewTopic {
-//        return NewTopic("topic-test-1", 10, 1)
-//    }
-
     @Bean //Funciona a partir do spring kafka 2.7
     fun topics(): KafkaAdmin.NewTopics {
         return KafkaAdmin.NewTopics(

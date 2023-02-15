@@ -1,6 +1,7 @@
 package com.codengine.reactive.controller
 
 import com.codengine.reactive.model.Employee
+import com.codengine.reactive.model.Person
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpEntity
 import org.springframework.http.ResponseEntity
@@ -17,6 +18,12 @@ class KafkaController(
     @PostMapping("/employee")
     fun sendMessageToKafka(@RequestBody employee: Employee): HttpEntity<Any?>{
         kafkaTemplate.send("topic-test-1", (employee.toString()))
+        return ResponseEntity.ok().build()
+    }
+
+    @PostMapping("/person")
+    fun sendPersonToKafka(@RequestBody person: Person): HttpEntity<Any?>{
+        kafkaTemplate.send("topic-person", (person.toString()))
         return ResponseEntity.ok().build()
     }
 

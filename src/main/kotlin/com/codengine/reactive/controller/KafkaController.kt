@@ -17,7 +17,7 @@ class KafkaController(
 
     @PostMapping("/employee")
     fun sendMessageToKafka(@RequestBody employee: Employee): HttpEntity<Any?>{
-        kafkaTemplate.send("topic-test-1", (employee.toString()))
+        kafkaTemplate.send("employee-topic", (employee.toString()))
         return ResponseEntity.ok().build()
     }
 

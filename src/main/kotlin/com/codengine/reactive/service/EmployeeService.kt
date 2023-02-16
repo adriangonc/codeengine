@@ -66,4 +66,7 @@ class EmployeeService(
         return gson.fromJson(employeeJson, Employee::class.java)
     }
 
+    fun sendEmployeeEvent(employee : Employee){
+        kafkaTemplate.send("employee-topic", (employee.toString()))
+    }
 }

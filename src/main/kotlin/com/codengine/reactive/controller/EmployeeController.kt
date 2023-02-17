@@ -22,7 +22,12 @@ class EmployeeController(
     @GetMapping
     //@Cacheable(key = "#id", value = ["employee"])
     fun getAllEmployees(): Flux<Employee> {
-        return employeeRepository.findAll()
+        return employeeService.getAllEmployees()
+    }
+
+    @GetMapping("{name}")
+    fun getEmployeesByName(@PathVariable name: String) : Flux<Employee> {
+        return employeeService.getEmployeeByName(name)
     }
 
     @GetMapping("{id}")

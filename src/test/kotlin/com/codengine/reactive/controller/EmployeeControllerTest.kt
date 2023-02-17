@@ -1,8 +1,10 @@
 package com.codengine.reactive.controller
 
 import com.codengine.reactive.model.Employee
+import com.codengine.reactive.model.Link
 import com.codengine.reactive.repository.EmployeesRepository
 import com.codengine.reactive.service.EmployeeService
+import org.junit.Before
 import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.mockito.BDDMockito
@@ -27,19 +29,27 @@ class EmployeeControllerTest(
     @MockBean
     lateinit var employeesRepository: EmployeesRepository
 
+    @Before
+    fun setUp() {
+        BDDMockito.given(employeeService.getAllEmployees()).willReturn(Flux.just(createEmployee()))
+        BDDMockito.given(employeesRepository.findAll()).willReturn(Flux.just(createEmployee()) )
+    }
+
     @Test
     fun `list all employees test`(){
         BDDMockito.given(employeeService.getEmployee("1532"))
-            .willReturn(Mono.just(Employee("1532","Adriano","IT")) )
+            .willReturn(Mono.just(createEmployee()) )
 
         BDDMockito.given(employeesRepository.findById("1532"))
-            .willReturn(Mono.just(Employee("1532","Adriano","IT")) )
+            .willReturn(Mono.just(createEmployee()) )
 
         webTestClient.get()
-            .uri("/v1/employees/1532")
+            .uri("/v1/employees")
             .exchange()
             .expectStatus()
             .is2xxSuccessful
     }
+
+    private fun createEmployee() = Employee("1532", "Adriano", "IT")
 
 }

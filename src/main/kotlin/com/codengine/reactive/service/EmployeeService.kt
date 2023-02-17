@@ -69,4 +69,25 @@ class EmployeeService(
     fun sendEmployeeEvent(employee : Employee){
         kafkaTemplate.send("employee-topic", (employee.toString()))
     }
+
+    fun getAllEmployees(): Flux<Employee> {
+        return try {
+            employeeRepository.findAll()
+        } catch (ex: Exception) {
+            Flux.error(ex)
+        }
+    }
+
+    fun getAllEmployeesByDepartment(department: String): Flux<Employee> {
+        return try {
+            employeeRepository.findByDepartment(department)
+        } catch (ex: Exception) {
+            Flux.error(ex)
+        }
+    }
+
+    fun getEmployeeByName(name: String): Flux<Employee> {
+        return employeeRepository.findAll()
+            .filter { it.name.contains(name, ignoreCase = true) }
+    }
 }

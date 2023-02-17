@@ -25,7 +25,7 @@ class EmployeeController(
         return employeeService.getAllEmployees()
     }
 
-    @GetMapping("{name}")
+    @GetMapping("/name/{name}")
     fun getEmployeesByName(@PathVariable name: String) : Flux<Employee> {
         return employeeService.getEmployeeByName(name)
     }

@@ -11,27 +11,27 @@ class ColdVersusHotPublisherTest {
     @Test
     fun `cold publisher test`(){
         val flux = fluxOfElements
-            .delayElements(Duration.ofMillis(1000))
+            .delayElements(Duration.ofMillis(500))
 
         flux.subscribe{ println("Subscriber 1: $it") } //Emite elementos desde o início
-        Thread.sleep(2000)
+        Thread.sleep(1000)
 
         flux.subscribe{ println("Subscriber 2: $it") } //Emite elementos desde o início
-        Thread.sleep(3000)
+        Thread.sleep(2000)
     }
 
     @Test
     fun `hot publisher test`(){
         val flux = fluxOfElements
-            .delayElements(Duration.ofMillis(1000))
+            .delayElements(Duration.ofMillis(500))
 
         val connectableFlux : ConnectableFlux<String> = flux.publish()
         connectableFlux.connect()
 
         connectableFlux.subscribe{ println("Subscriber 1: $it") } //Emite elementos desde o início
-        Thread.sleep(2000)
+        Thread.sleep(1000)
 
         connectableFlux.subscribe{ println("Subscriber 2: $it") } //Emite elementos desde o início
-        Thread.sleep(3000)
+        Thread.sleep(2000)
     }
 }

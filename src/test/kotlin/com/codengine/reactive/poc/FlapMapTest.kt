@@ -66,7 +66,7 @@ class FlapMapTest {
             "15" to "Mario",
             "16" to "Claire"
         )
-        Thread.sleep(250)
+        Thread.sleep(150)
         return students.getOrDefault(id, "Student not found!").toMono()
     }
     

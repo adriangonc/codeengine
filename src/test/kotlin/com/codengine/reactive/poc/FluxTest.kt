@@ -46,7 +46,7 @@ class FluxTest {
             .log()
             .take(15) //Pega a quantidade especificada de elementos de um flux infinito
             .subscribe { data -> println(data)}
-        Thread.sleep(2000)
+        Thread.sleep(500)
     }
 
     @Test
@@ -54,7 +54,7 @@ class FluxTest {
         Flux.range(1, 1532)
             .log()
             .subscribe ({ data -> println(data)}, {}, {}, {subscription -> subscription.request(34)} )
-        Thread.sleep(2000)
+        Thread.sleep(600)
     }
 
     @Test

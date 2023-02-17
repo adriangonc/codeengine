@@ -14,10 +14,10 @@ class ColdVersusHotPublisherTest {
             .delayElements(Duration.ofMillis(500))
 
         flux.subscribe{ println("Subscriber 1: $it") } //Emite elementos desde o início
-        Thread.sleep(1000)
+        Thread.sleep(550)
 
         flux.subscribe{ println("Subscriber 2: $it") } //Emite elementos desde o início
-        Thread.sleep(2000)
+        Thread.sleep(400)
     }
 
     @Test
@@ -29,9 +29,9 @@ class ColdVersusHotPublisherTest {
         connectableFlux.connect()
 
         connectableFlux.subscribe{ println("Subscriber 1: $it") } //Emite elementos desde o início
-        Thread.sleep(1000)
+        Thread.sleep(700)
 
         connectableFlux.subscribe{ println("Subscriber 2: $it") } //Emite elementos desde o início
-        Thread.sleep(2000)
+        Thread.sleep(500)
     }
 }

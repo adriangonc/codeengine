@@ -35,6 +35,7 @@ class EmployeeControllerTest(
         BDDMockito.given(employeesRepository.findAll()).willReturn(Flux.just(createEmployee()) )
         BDDMockito.given(employeeService.getEmployee("1532")).willReturn(Mono.just(createEmployee()) )
         BDDMockito.given(employeesRepository.findById("1532")).willReturn(Mono.just(createEmployee()) )
+        BDDMockito.given(employeeService.getEmployeeByName("Adr")).willReturn(Flux.just(createEmployee()))
     }
 
     @Test
@@ -57,6 +58,16 @@ class EmployeeControllerTest(
 
         webTestClient.get()
             .uri("/v1/employees/1532")
+            .exchange()
+            .expectStatus()
+            .is2xxSuccessful
+    }
+
+    @Test
+    fun `get employee by name test`(){
+
+        webTestClient.get()
+            .uri("/v1/employees/name/Adr")
             .exchange()
             .expectStatus()
             .is2xxSuccessful

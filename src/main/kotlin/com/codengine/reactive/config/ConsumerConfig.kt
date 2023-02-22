@@ -1,6 +1,5 @@
-package com.codengine.reactive.infra
+package com.codengine.reactive.config
 
-import com.codengine.reactive.service.BasicListener
 import com.codengine.reactive.service.PersonListener
 import org.aopalliance.aop.Advice
 import org.springframework.amqp.rabbit.config.RetryInterceptorBuilder

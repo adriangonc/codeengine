@@ -15,7 +15,6 @@ import reactor.core.publisher.Mono
 //@EnableCaching
 class EmployeeController(
     @Autowired
-    val employeeRepository: EmployeesRepository,
     private val employeeService: EmployeeService
 ) {
 
@@ -42,17 +41,17 @@ class EmployeeController(
 
     @PutMapping("/update")
     fun updateEmployee(@RequestBody employee: Employee): Mono<Employee> {
-        return employeeRepository.save(employee)
+        return employeeService.updateEmployee(employee)
     }
 
     @DeleteMapping("/delete/{id}")
     fun deleteEmployee(@PathVariable id: String): Mono<Void> {
-        return employeeRepository.deleteById(id)
+        return employeeService.deleteEmployee(id)
     }
 
     @GetMapping("/report/department/{department}")
     fun getReportEmployees(@PathVariable department: String): Flux<Employee> {
-        return employeeRepository.findByDepartment(department)
+        return employeeService.findEmployeeByDepartment(department)
     }
 
     @GetMapping("/report/department/names/{department}")

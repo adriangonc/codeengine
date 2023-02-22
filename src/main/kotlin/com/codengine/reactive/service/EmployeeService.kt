@@ -90,4 +90,16 @@ class EmployeeService(
         return employeeRepository.findAll()
             .filter { it.name.contains(name, ignoreCase = true) }
     }
+
+    fun updateEmployee(employee: Employee): Mono<Employee> {
+        return employeeRepository.save(employee)
+    }
+
+    fun deleteEmployee(id: String): Mono<Void> {
+        return employeeRepository.deleteById(id)
+    }
+
+    fun findEmployeeByDepartment(department: String): Flux<Employee> {
+        return employeeRepository.findByDepartment(department)
+    }
 }

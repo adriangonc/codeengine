@@ -36,17 +36,17 @@ class EmployeeService(
     fun getEmployee(id: String): Mono<Employee> {
         var employeeJson = Employee("", "", "")
         val employeeCache = cacheService.get(id).log()
-        try {
+        return try {
             val employee = Mono.just(jsonToEmployee(employeeCache.toString()))
             println(employee)
-            return if (!employee.block()?.id.isNullOrEmpty()) {
+            if (!employee.block()?.id.isNullOrEmpty()) {
                 Mono.just(employeeJson)
             } else {
                 findEmployeeOnDatabase(id)
             }
         } catch (ex: Exception) {
             println(ex)
-            return findEmployeeOnDatabase(id)
+            findEmployeeOnDatabase(id)
         }
 
     }

@@ -3,6 +3,7 @@ package com.codengine.reactive.controller
 import com.codengine.reactive.model.Employee
 import com.codengine.reactive.model.Person
 import com.codengine.reactive.service.EmployeeService
+import com.codengine.reactive.service.EventService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpStatus
@@ -12,15 +13,15 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("v1/kafka")
-class KafkaController(
+class EventController(
     @Autowired
-    private val employeeService: EmployeeService
+    private val eventService: EventService
 ) {
 
-    @PostMapping("/employee")
-    fun sendMessageToKafka(@RequestBody employee: Employee): HttpEntity<Any?>{
+    @PostMapping("/event/{topicName}")
+    fun sendMessageToKafka(@RequestBody employee: Employee, @PathVariable topicName : String): HttpEntity<Any?>{
         return try {
-            employeeService.sendEmployeeEvent(employee)
+            eventService.sendEvent(employee, topicName)
             ResponseEntity.ok().build()
         } catch (e: Exception) {
             ResponseEntity.internalServerError().build()

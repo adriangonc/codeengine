@@ -1,0 +1,36 @@
+{
+  "type": "record",
+  "name": "PersonDTO",
+  "namespace": "com.codengine.reactive.model",
+  "fields": [
+    {
+      "name":  "id",
+      "type":  "string",
+      "doc": "Identificador"
+    },
+    {
+      "name":  "name",
+      "type":  ["null","string"],
+      "doc": "Nome da pessoa"
+    },
+    {
+      "name": "collageCompletedYear",
+      "type": ["null","int"],
+      "default": null,
+      "doc": "Ano de conclusao dos estudos"
+    },
+    {
+      "name": "bornAt",
+      "type": ["null","long"],
+      "default": null,
+      "doc": "Data de nascimento"
+    },
+    {
+      "name": "active",
+      "type": ["null","boolean"],
+      "default": null,
+      "doc": "Usuario ativo"
+    }
+
+  ]
+}

@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.14.RELEASE"
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
+	id("com.github.davidmc24.gradle.plugin.avro") version "1.2.0"
 }
 
 group = "com.codengine"
@@ -13,6 +14,9 @@ java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
 	mavenCentral()
+	maven {
+		url = uri("https://packages.confluent.io/maven")
+	}
 }
 
 dependencies {
@@ -61,6 +65,13 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
 	implementation("org.springframework.kafka:spring-kafka:2.9.4")
 
+	//Avro
+	implementation("io.confluent:kafka-avro-serializer:5.5.0")
+	implementation("org.apache.avro:avro:1.10.0")
+	//implementation("org.apache.avro:avro:1.11.0")
+	//implementation("org.apache.avro:avro-tools:1.11.0")
+	//implementation("io.confluent:kafka-avro-serializer:7.3.1")
+
 }
 
 tasks.withType<KotlinCompile> {
@@ -72,4 +83,20 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.named("compileKotlin") {
+	dependsOn(":generateAvroJava")
+}
+
+sourceSets {
+	main {
+		java.srcDir("main/avro")
+	}
+}
+
+avro {
+	fieldVisibility.set("PRIVATE")
+	isCreateSetters.set(false)
+	outputCharacterEncoding.set("UTF-8")
 }

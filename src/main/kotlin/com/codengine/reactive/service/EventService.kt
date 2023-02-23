@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 @Service
 class EventService(
     @Autowired
-    private val kafkaTemplate: KafkaTemplate<String, Any>,
+    private val kafkaTemplate: KafkaTemplate<String, Any>
 ) {
     private val log = LoggerFactory.getLogger(javaClass)
 

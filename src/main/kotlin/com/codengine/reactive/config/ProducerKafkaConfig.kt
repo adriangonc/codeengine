@@ -48,7 +48,8 @@ class ProducerKafkaConfig(
     fun topics(): KafkaAdmin.NewTopics {
         return KafkaAdmin.NewTopics(
             TopicBuilder.name("topic-test-1").partitions(10).replicas(1).build(),
-            TopicBuilder.name("employee-topic").partitions(2).replicas(1).build()
+            TopicBuilder.name("employee-topic").partitions(2).replicas(1).build(),
+            TopicBuilder.name("person-topic").partitions(3).replicas(2).build()
         )
     }
 

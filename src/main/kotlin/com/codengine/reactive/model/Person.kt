@@ -1,11 +1,13 @@
 package com.codengine.reactive.model
 
+import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
 
 @Document("person")
 data class Person(
-    var id: String,
+    @Id
+    var id: String?,
 
     var name: String,
 
@@ -16,9 +18,6 @@ data class Person(
     val active: Boolean
 ) {
     override fun toString(): String {
-        return "{ name: ${this.name}, " +
-                "collageCompletedYear: ${this.collageCompletedYear}, " +
-                "bornAt: ${this.bornAt}, " +
-                "active: ${this.active} }"
+        return "Person(id='$id', name='$name', collageCompletedYear=$collageCompletedYear, bornAt=$bornAt, active=$active)"
     }
 }

@@ -1,7 +1,6 @@
 package com.codengine.reactive.service
 
 import com.codengine.reactive.model.Person
-import io.kotlintest.Tags.Companion.Empty
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

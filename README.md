@@ -12,9 +12,10 @@
 - Docker
 - RabbitMQ
 - Kafka
+- Avro
 
 # Documentação
 :thinking:
 
 # Dockerfile
-//TOTO
+`docker/docker-compose.yml`

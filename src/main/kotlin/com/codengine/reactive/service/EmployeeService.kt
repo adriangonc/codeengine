@@ -4,12 +4,15 @@ import com.codengine.reactive.model.Employee
 import com.codengine.reactive.repository.EmployeesRepository
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.CacheConfig
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
+@CacheConfig(cacheNames = ["employees"])
 class EmployeeService(
     @Autowired
     val employeeRepository: EmployeesRepository,
@@ -70,6 +73,7 @@ class EmployeeService(
         kafkaTemplate.send("employee-topic", (employee.toString()))
     }
 
+    //@Cacheable TODO Desabilitado até corrigir erro no cache
     fun getAllEmployees(): Flux<Employee> {
         return try {
             employeeRepository.findAll()

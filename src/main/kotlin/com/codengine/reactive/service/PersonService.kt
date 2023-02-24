@@ -4,6 +4,7 @@ import com.codengine.reactive.model.Employee
 import com.codengine.reactive.model.Person
 import com.codengine.reactive.repository.PersonRepository
 import org.slf4j.LoggerFactory
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
@@ -11,8 +12,9 @@ import reactor.core.publisher.Mono
 
 @Service
 class PersonService(
-        @Autowired
-        val personRepository: PersonRepository
+    @Autowired
+        val personRepository: PersonRepository,
+        private val rabbitTemplate: RabbitTemplate,
 ) {
     private val log = LoggerFactory.getLogger(javaClass)
 
@@ -47,4 +49,11 @@ class PersonService(
         return personRepository.findAll()
     }
 
+    fun sendMessage(
+        exchange: String,
+        routingKey: String,
+        message: Person
+    ) {
+        rabbitTemplate.convertAndSend(exchange, routingKey, message)
+    }
 }

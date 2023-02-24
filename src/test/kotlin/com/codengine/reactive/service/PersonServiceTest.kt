@@ -67,13 +67,9 @@ class PersonServiceTest {
         val result = personService.deletePerson(personId)
 
         // Assert
-        StepVerifier.create(result)
-            .verifyComplete()
+        StepVerifier.create(result).verifyComplete()
     }
 
-
     private fun createPerson() = Person("1A", "Adriano", 2016, LocalDate.of(1988, Month.APRIL, 15), true)
-
-
 
 }

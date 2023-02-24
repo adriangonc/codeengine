@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class ConsumerConfig(
     private val connectionFactory: ConnectionFactory,
-    //private val basicListener: BasicListener,
     private val personListener: PersonListener,
     private val simpleRabbitListenerConnectionFactory: SimpleRabbitListenerContainerFactory
 ) {

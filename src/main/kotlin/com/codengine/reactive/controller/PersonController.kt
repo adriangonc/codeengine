@@ -16,7 +16,6 @@ import reactor.core.publisher.Mono
 @RequestMapping("v1/person")
 class PersonController(
     val personRepository: PersonRepository,
-    private val rabbitTemplate: RabbitTemplate,
 
     @Autowired
     private val personService: PersonService
@@ -41,7 +40,7 @@ class PersonController(
         @RequestBody message: Person
     ): HttpEntity<Any?> {
         log.info("sending message $message")
-        rabbitTemplate.convertAndSend(exchange, routingKey, message)
+        personService.sendMessage(exchange, routingKey, message)
         return ResponseEntity.ok().build()
     }
 

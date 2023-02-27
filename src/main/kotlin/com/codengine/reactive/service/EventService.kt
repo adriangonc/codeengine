@@ -20,4 +20,13 @@ class EventService(
             log.error("Erro ao enviar evento: \n ${event.toString()} ")
         }
     }
+
+    fun sendEventAvro(event : Any, topicName : String){
+        try {
+            kafkaTemplate.send(topicName, (event.toString()))
+            log.info("Event send to broker: \n ${event.toString()}")
+        } catch (e: Exception){
+            log.error("Erro ao enviar evento: \n ${event.toString()} ")
+        }
+    }
 }

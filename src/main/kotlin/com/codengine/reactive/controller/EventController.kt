@@ -18,6 +18,8 @@ class EventController(
     private val eventService: EventService
 ) {
 
+    private val PERSON_TOPIC = "person-topic"
+
     @PostMapping("/event/{topicName}")
     fun sendMessageToKafka(@RequestBody employee: Employee, @PathVariable topicName : String): HttpEntity<Any?>{
         return try {
@@ -31,6 +33,12 @@ class EventController(
     @PostMapping("/person")
     fun sendPersonToKafka(@RequestBody person: Person): HttpEntity<Any?>{
         //kafkaTemplate.send("topic-person", (person.toString()))
+        return ResponseEntity.ok().build()
+    }
+
+    @PostMapping("/person/avro")
+    fun sendPersonAvroToKafka(@RequestBody person: Person): HttpEntity<Any?>{
+        eventService.sendEventAvro(person, PERSON_TOPIC)
         return ResponseEntity.ok().build()
     }
 

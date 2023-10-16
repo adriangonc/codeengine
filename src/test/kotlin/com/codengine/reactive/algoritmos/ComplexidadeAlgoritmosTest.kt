@@ -12,8 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner
 class ComplexidadeAlgoritmosTest {
 
 
-    private var numberArray = intArrayOf(0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 1532, 9)
-    private var elementsArray = intArrayOf(-8, 1, 2, 3, 4, 1532)
+    private var numberArray = intArrayOf(0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 1532, 9, 45, 78)
+    private var elementsArray = intArrayOf(-8, 1, 2, 3, 4, 1532, 36, 89, 45, 123, 97, 456, 23, 12, 389, 324, 1596)
 
     @Before
     fun setUp() {

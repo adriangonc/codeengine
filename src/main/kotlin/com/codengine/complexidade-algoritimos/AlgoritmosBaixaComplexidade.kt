@@ -5,6 +5,7 @@ fun findElementInVectorOfInts(numberArray: IntArray, element: Number): Number? {
         if (n == element) return element;
     }
     return null
+    //Complexidade O(N)
 }
 
 fun findElementInArrayOfArrays(numberArray: IntArray, elementArray: IntArray): Array<Number> {
@@ -18,6 +19,6 @@ fun findElementInArrayOfArrays(numberArray: IntArray, elementArray: IntArray): A
     }
 
     return elementsInTwoArrays
-    // O(N²)
+    //Complexidade O(N²)
 }
 

@@ -8,7 +8,7 @@ fun findElementInVectorOfInts(numberArray: IntArray, element: Number): Number? {
     //Complexidade O(N)
 }
 
-fun findElementInArrayOfArrays(numberArray: IntArray, elementArray: IntArray): Array<Number> {
+fun findElementsInThoArrays(numberArray: IntArray, elementArray: IntArray): Array<Number> {
     var elementsInTwoArrays: Array<Number> = arrayOf()
     for (n in numberArray.indices) { // O(N)
         for (j in elementArray.indices) { // O(N)
@@ -22,22 +22,22 @@ fun findElementInArrayOfArrays(numberArray: IntArray, elementArray: IntArray): A
     //Complexidade O(N²)
 }
 
-fun findElementIn3Arrays(numberArray: IntArray, elementArray: IntArray, elementArray3: IntArray): Array<Number> {
-    var elementsInTwoArrays: Array<Number> = arrayOf()
+fun findElementInThreeArrays(numberArray: IntArray, elementArray: IntArray, elementArray3: IntArray): IntArray {
+    var elementsInTwoArrays: MutableSet<Int> = mutableSetOf()
     for (n in numberArray.indices) { // O(N)
         for (j in elementArray.indices) { // O(N)
             for(i in elementArray3.indices){
                 if (numberArray[n] == elementArray[j]) {
-                    elementsInTwoArrays = elementsInTwoArrays.plus(elementArray[j])
+                    elementsInTwoArrays.add(elementArray[j])
                     continue
-                } else if (elementArray[n] == elementArray3[i]){
-                    elementsInTwoArrays = elementsInTwoArrays.plus(elementArray3[i])
+                } else if (numberArray[n] == elementArray3[i]){
+                    elementsInTwoArrays.add(elementArray3[i])
                 }
             }
         }
     }
 
-    return elementsInTwoArrays
+    return elementsInTwoArrays.toIntArray()
     //Complexidade O(N²)
 }
 

@@ -5,6 +5,7 @@ import com.codengine.`complexidade-algoritimos`.findElementInVectorOfInts
 import com.codengine.`complexidade-algoritimos`.findElementsInThoArrays
 import com.codengine.generateAraayOfRandomNumbers
 import org.junit.Before
+import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.springframework.test.context.junit4.SpringRunner
@@ -22,6 +23,14 @@ class ComplexidadeAlgoritmosTest {
     }
 
     @Test
+    @Order(1)
+    fun shouldGenerateRandomNumbersArray() {
+        var randomNumbersArray = generateAraayOfRandomNumbers(100)
+        assert(randomNumbersArray.size == 100)
+    }
+
+    @Test
+    @Order(2)
     fun algoritmoN1Test() {
 
         var testResult = findElementInVectorOfInts(numberArray, 5)
@@ -29,6 +38,7 @@ class ComplexidadeAlgoritmosTest {
     }
 
     @Test
+    @Order(3)
     fun algoritmoN2Test() {
 
         var testResult = findElementsInThoArrays(numberArray, elementsArray)
@@ -36,6 +46,7 @@ class ComplexidadeAlgoritmosTest {
     }
 
     @Test
+    @Order(4)
     fun algoritmoN3Test() {
 
         var testResult = findElementInThreeArrays(numberArray, elementsArray, randomNumbersArray)

@@ -22,16 +22,16 @@ fun findElementsInThoArrays(numberArray: IntArray, elementArray: IntArray): Arra
     //Complexidade O(N²)
 }
 
-fun findElementInThreeArrays(numberArray: IntArray, elementArray: IntArray, elementArray3: IntArray): IntArray {
+fun findElementInThreeArrays(numberArray: IntArray, elementArray: IntArray, randomNumbersArray: Array<Number>): IntArray {
     var elementsInTwoArrays: MutableSet<Int> = mutableSetOf()
     for (n in numberArray.indices) { // O(N)
         for (j in elementArray.indices) { // O(N)
-            for(i in elementArray3.indices){
+            for(i in randomNumbersArray.indices){
                 if (numberArray[n] == elementArray[j]) {
                     elementsInTwoArrays.add(elementArray[j])
                     continue
-                } else if (numberArray[n] == elementArray3[i]){
-                    elementsInTwoArrays.add(elementArray3[i])
+                } else if (numberArray[n] == randomNumbersArray[i]){
+                    elementsInTwoArrays.add(randomNumbersArray[i].toInt())
                 }
             }
         }
